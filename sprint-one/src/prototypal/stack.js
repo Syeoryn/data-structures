@@ -3,8 +3,8 @@ var makeStack = function() {
   var instance = Object.create(stackMethods);
 
   // Use an object with numeric keys to store values
-  instance.storage = {};
-  instance.length = 0; // Hint: set an initial value here
+  instance._storage = {};
+  instance._size = 0; // Hint: set an initial value here
 
 
   return instance;
@@ -12,17 +12,17 @@ var makeStack = function() {
 
 var stackMethods = {
   size : function(){
-    return this.length;
+    return this._size;
   },
   push: function(value){
-    this.storage[this.length] = value;
-    this.length++;
+    this._storage[this._size] = value;
+    this._size++;
   },
   pop: function(){
-    if(this.length){
-      this.length--;
-      var removed = this.storage[this.length];
-      delete this.storage[this.length];
+    if(this._size){
+      this._size--;
+      var removed = this._storage[this._size];
+      delete this._storage[this._size];
       return removed;
     }
   }

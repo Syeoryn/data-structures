@@ -3,9 +3,9 @@ var makeQueue = function() {
   var instance = Object.create(queueMethods);
 
   // Use an object with numeric keys to store values
-  instance.storage = {};
-  instance.first = 0;
-  instance.last = 0;
+  instance._storage = {};
+  instance._first = 0;
+  instance._last = 0;
 
 
   return instance;
@@ -13,17 +13,17 @@ var makeQueue = function() {
 
 var queueMethods = {
   size: function(){
-    return this.last - this.first;
+    return this._last - this._first;
   },
   enqueue: function(value){
-    this.storage[this.last] = value;
-    this.last++;
+    this._storage[this._last] = value;
+    this._last++;
   },
   dequeue: function(){
-    if(this.last - this.first){
-      var removed = this.storage[this.first];
-      delete this.storage[this.first];
-      this.first ++;
+    if(this._last - this._first){
+      var removed = this._storage[this._first];
+      delete this._storage[this._first];
+      this._first ++;
       return removed;
     }
   }
